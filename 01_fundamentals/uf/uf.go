@@ -1,12 +1,4 @@
-package main
-
-import (
-	"bufio"
-	"fmt"
-	"os"
-	"strconv"
-	"strings"
-)
+package uf
 
 type UF struct {
 	id []int
@@ -64,31 +56,4 @@ func (uf *UF) Union(p int, q int) {
 		uf.sz[i] = uf.sz[i] + uf.sz[j]
 	}
 	uf.count = uf.count - 1
-}
-
-func main() {
-	scanner := bufio.NewScanner(os.Stdin)
-	scanner.Scan()
-	n, _ := strconv.Atoi(scanner.Text())
-
-	uf := New(n)
-
-	for scanner.Scan() {
-		s := strings.Fields(scanner.Text())
-		p, _ := strconv.Atoi(s[0])
-		q, _ := strconv.Atoi(s[1])
-
-		if uf.Connected(p, q) {
-			continue
-		}
-
-		uf.Union(p, q)
-		//fmt.Printf("%d %d\n", p, q)
-	}
-
-	fmt.Printf("%d components\n", uf.Count())
-
-	if err := scanner.Err(); err != nil {
-		os.Exit(1)
-	}
 }
