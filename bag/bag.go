@@ -27,14 +27,14 @@ func (stack *Bag) Add(item interface{}) {
 	stack.n = stack.n + 1
 }
 
-func (stack *Bag) Iterate() chan *interface{} {
-	ch := make(chan *interface{})
+func (stack *Bag) Iterate() chan interface{} {
+	ch := make(chan interface{})
 
 	go func() {
 		defer close(ch)
 		node := stack.head
 		for node != nil {
-			ch <- &node.item
+			ch <- node.item
 			node = node.next
 		}
 	}()

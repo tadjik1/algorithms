@@ -27,25 +27,25 @@ func (stack *Stack) Push(item interface{}) {
 	stack.n = stack.n + 1
 }
 
-func (stack *Stack) Pop() *interface{} {
+func (stack *Stack) Pop() interface{} {
 	head := stack.head
 	stack.head = head.next
 	stack.n = stack.n - 1
-	return &head.item
+	return head.item
 }
 
-func (stack *Stack) Peek() *interface{} {
-	return &stack.head.item
+func (stack *Stack) Peek() interface{} {
+	return stack.head.item
 }
 
-func (stack *Stack) Iterate() chan *interface{} {
-	ch := make(chan *interface{})
+func (stack *Stack) Iterate() chan interface{} {
+	ch := make(chan interface{})
 
 	go func() {
 		defer close(ch)
 		node := stack.head
 		for node != nil {
-			ch <- &node.item
+			ch <- node.item
 			node = node.next
 		}
 	}()

@@ -34,24 +34,24 @@ func (queue *Queue) Enqueue(item interface{}) {
 	queue.n = queue.n + 1
 }
 
-func (queue *Queue) Dequeue() *interface{} {
+func (queue *Queue) Dequeue() interface{} {
 	head := queue.head
 	queue.head = head.next
 	queue.n = queue.n - 1
 	if queue.IsEmpty() {
 		queue.tail = nil
 	}
-	return &head.item
+	return head.item
 }
 
-func (queue *Queue) Iterate() chan *interface{} {
-	ch := make(chan *interface{})
+func (queue *Queue) Iterate() chan interface{} {
+	ch := make(chan interface{})
 
 	go func() {
 		defer close(ch)
 		node := queue.head
 		for node != nil {
-			ch <- &node.item
+			ch <- node.item
 			node = node.next
 		}
 	}()
