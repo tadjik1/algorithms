@@ -1,6 +1,4 @@
-package main
-
-import "fmt"
+package deque
 
 /*
 Deque, a double-ended queue is like a stack or a queue but
@@ -14,9 +12,9 @@ type Node struct {
 }
 
 type Deque struct {
-	left *Node
+	left  *Node
 	right *Node
-	n int
+	n     int
 }
 
 func New() *Deque {
@@ -32,44 +30,62 @@ func (deque *Deque) Size() int {
 }
 
 func (deque *Deque) PushLeft(item interface{}) {
-	deque.left = &Node{item, deque.left, nil}
+	node := &Node{item: item}
 	if deque.IsEmpty() {
-		deque.right = deque.left
+		deque.left = node
+		deque.right = node
 	} else {
-		deque.left.next.prev = deque.left
+		node.next = deque.left
+		deque.left.prev = node
+		deque.left = node
 	}
+
 	deque.n = deque.n + 1
 }
 
 func (deque *Deque) PushRight(item interface{}) {
-	deque.right = &Node{item, nil, deque.right}
+	node := &Node{item: item}
 	if deque.IsEmpty() {
-		deque.left = deque.right
+		deque.right = node
+		deque.left = node
 	} else {
-		deque.right.prev.next = deque.right
+		node.prev = deque.right
+		deque.right.next = node
+		deque.right = node
 	}
+
 	deque.n = deque.n + 1
 }
 
 func (deque *Deque) PopLeft() interface{} {
 	left := deque.left
-	deque.left = left.next
-	deque.left.prev = nil
-	deque.n = deque.n - 1
-	if deque.IsEmpty() {
+
+	if left.next != nil {
+		deque.left = left.next
+		deque.left.prev = nil
+	} else {
+		deque.left = nil
 		deque.right = nil
 	}
+
+	deque.n = deque.n - 1
+
 	return left.item
 }
 
 func (deque *Deque) PopRight() interface{} {
 	right := deque.right
-	right.next = nil
-	deque.right = right.prev
-	deque.n = deque.n - 1
-	if deque.IsEmpty() {
+
+	if right.prev != nil {
+		deque.right = right.prev
+		deque.right.next = nil
+	} else {
+		deque.right = nil
 		deque.left = nil
 	}
+
+	deque.n = deque.n - 1
+
 	return right.item
 }
 
@@ -86,30 +102,4 @@ func (deque *Deque) Iterate() chan interface{} {
 	}()
 
 	return ch
-}
-
-
-func main() {
-	d := New()
-	values := []int{1, 2, 3, 4, 5}
-
-	d.PushLeft(&values[0])
-	d.PushLeft(&values[1])
-	d.PushLeft(&values[2])
-	d.PushLeft(&values[3])
-	d.PushLeft(&values[4])
-
-	for !d.IsEmpty() {
-		fmt.Printf("value: %d, size: %d, isEmpty?: %t \n", *(d.PopRight()).(*int), d.Size(), d.IsEmpty())
-	}
-
-	d.PushRight(&values[0])
-	d.PushRight(&values[1])
-	d.PushRight(&values[2])
-	d.PushRight(&values[3])
-	d.PushRight(&values[4])
-
-	for !d.IsEmpty() {
-		fmt.Printf("value: %d, size: %d, isEmpty?: %t \n", *(d.PopLeft()).(*int), d.Size(), d.IsEmpty())
-	}
 }

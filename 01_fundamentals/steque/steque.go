@@ -1,4 +1,4 @@
-package main
+package steque
 
 import "fmt"
 
@@ -15,7 +15,7 @@ type Node struct {
 type Steque struct {
 	head *Node
 	tail *Node
-	n int
+	n    int
 }
 
 func New() *Steque {

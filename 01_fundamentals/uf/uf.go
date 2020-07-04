@@ -1,8 +1,8 @@
 package uf
 
 type UF struct {
-	id []int
-	sz []int
+	id    []int
+	sz    []int
 	count int
 }
 
