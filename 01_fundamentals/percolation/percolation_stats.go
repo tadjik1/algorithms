@@ -53,5 +53,6 @@ func main() {
 		stats.runs = append(stats.runs, float64(p.NumberOfOpenSites())/float64(n*n))
 	}
 
-	fmt.Printf("mean: %.4f, stddev: %.4f\n", stats.Mean(), stats.Stddev())
+	fmt.Printf("mean				= %.12f\n", stats.Mean())
+	fmt.Printf("stddev				= %.12f\n", stats.Stddev())
 }

@@ -94,28 +94,24 @@ type PercolationStats interface {
 ```
 
 Also, include a `main()` function that takes two _command-line arguments_ _n_ and _T_, performs _T_ independent 
-computational experiments (discussed above) on an _n_\-by-_n_ grid, and prints the sample mean, sample standard 
-deviation, and the _95% confidence interval_ for the percolation threshold. 
+computational experiments (discussed above) on an _n_\-by-_n_ grid, and prints the sample mean and sample standard 
+deviation. 
 ```
-> ~/Desktop/percolation> go run PercolationStats.go 200 100
+> ~/Desktop/percolation> go run percolation_stats.go 200 100
 > mean                    = 0.5929934999999997
 > stddev                  = 0.00876990421552567
-> 95% confidence interval = \[0.5912745987737567, 0.5947124012262428\]
 > 
-> ~/Desktop/percolation> go run PercolationStats.go 200 100
+> ~/Desktop/percolation> go run percolation_stats.go 200 100
 > mean                    = 0.592877
 > stddev                  = 0.009990523717073799
-> 95% confidence interval = \[0.5909188573514536, 0.5948351426485464\]
 > 
-> ~/Desktop/percolation> go run PercolationStats.go 2 10000
+> ~/Desktop/percolation> go run percolation_stats.go 2 10000
 > mean                    = 0.666925
 > stddev                  = 0.11776536521033558
-> 95% confidence interval = \[0.6646167988418774, 0.6692332011581226\]
 > 
 > ~/Desktop/percolation> go run PercolationStats.go 2 100000
 > mean                    = 0.6669475
 > stddev                  = 0.11775205263262094
-> 95% confidence interval = \[0.666217665216461, 0.6676773347835391\]
 ```
 
 This assignment was developed by Bob Sedgewick and Kevin Wayne.  
