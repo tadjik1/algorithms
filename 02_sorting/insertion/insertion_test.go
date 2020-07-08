@@ -1,27 +1,23 @@
 package insertion
 
 import (
+	"algorithms/02_sorting/sortable"
+	"algorithms/02_sorting/utils"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
-type values []int
-
-func (v values) Len() int {
-	return len(v)
-}
-
-func (v values) Swap(i int, j int) {
-	v[i], v[j] = v[j], v[i]
-}
-
-func (v values) Less(i int, j int) bool {
-	return v[i] < v[j]
-}
-
 func TestSort(t *testing.T) {
-	v := []int{5, 4, 3, 2, 1}
-	Sort(values(v))
+	users := []sortable.User{
+		{"Bob", 31},
+		{"Kate", 26},
+		{"John", 42},
+		{"Michael", 17},
+		{"Jenny", 26},
+	}
+	Sort(sortable.Users(users))
 
-	assert.Equal(t, []int{1, 2, 3, 4, 5}, v)
+	assert.Equal(t, []int{17, 26, 26, 31, 42}, utils.Map(users, func(user sortable.User) int {
+		return user.Age
+	}))
 }
