@@ -20,4 +20,7 @@ func TestSort(t *testing.T) {
 	assert.Equal(t, []int{17, 26, 26, 31, 42}, utils.Map(users, func(user sortable.User) int {
 		return user.Age
 	}))
+
+	assert.Equal(t, "Kate", users[1].Name)
+	assert.Equal(t, "Jenny", users[2].Name)
 }
