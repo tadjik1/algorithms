@@ -5,9 +5,23 @@ import (
 	"testing"
 )
 
-func TestSort(t *testing.T) {
-	values := []int{5, 4, 3, 2, 1}
-	Sort(values)
+type values []int
 
-	assert.Equal(t, []int{1, 2, 3, 4, 5}, values)
+func (v values) Len() int {
+	return len(v)
+}
+
+func (v values) Swap(i int, j int) {
+	v[i], v[j] = v[j], v[i]
+}
+
+func (v values) Less(i int, j int) bool {
+	return v[i] < v[j]
+}
+
+func TestSort(t *testing.T) {
+	v := []int{5, 4, 3, 2, 1}
+	Sort(values(v))
+
+	assert.Equal(t, []int{1, 2, 3, 4, 5}, v)
 }

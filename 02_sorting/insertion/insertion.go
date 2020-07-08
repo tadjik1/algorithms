@@ -1,11 +1,11 @@
 package insertion
 
-import "algorithms/02_sorting/utils"
+import "algorithms/02_sorting/sortable"
 
-func Sort(s []int) {
-	for i := 1; i < len(s); i++ {
-		for j := i; j > 0 && s[j] < s[j-1]; j-- {
-			utils.Exchange(s, j, j-1)
+func Sort(s sortable.Sortable) {
+	for i := 1; i < s.Len(); i++ {
+		for j := i; j > 0 && s.Less(j, j - 1); j-- {
+			s.Swap(j, j - 1)
 		}
 	}
 }

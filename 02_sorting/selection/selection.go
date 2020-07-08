@@ -1,15 +1,15 @@
 package selection
 
-import "algorithms/02_sorting/utils"
+import "algorithms/02_sorting/sortable"
 
-func Sort(s []int) {
-	for i := 0; i < len(s); i++ {
+func Sort(s sortable.Sortable) {
+	for i := 0; i < s.Len(); i++ {
 		min := i
-		for j := i + 1; j < len(s); j++ {
-			if s[j] < s[min] {
+		for j := i + 1; j < s.Len(); j++ {
+			if s.Less(j, min) {
 				min = j
 			}
 		}
-		utils.Exchange(s, i, min)
+		s.Swap(i, min)
 	}
 }
