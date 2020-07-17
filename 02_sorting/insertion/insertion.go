@@ -1,10 +1,12 @@
 package insertion
 
-import "algorithms/02_sorting/sortable"
+import (
+	. "algorithms/02_sorting/utils"
+)
 
-func Sort(s sortable.Sortable) {
+func Sort(s Users) {
 	for i := 1; i < s.Len(); i++ {
-		for j := i; j > 0 && s.Less(j, j-1); j-- {
+		for j := i; j > 0 && s[j].Less(s[j - 1]); j-- {
 			s.Swap(j, j-1)
 		}
 	}
