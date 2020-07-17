@@ -5,7 +5,7 @@ type User struct {
 	Age  int
 }
 
-func (user User) Less (other User) bool {
+func (user User) Less(other User) bool {
 	return user.Age < other.Age
 }
 
