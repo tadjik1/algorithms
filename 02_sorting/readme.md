@@ -4,9 +4,19 @@
 goos: darwin
 goarch: amd64
 pkg: algorithms/02_sorting
-BenchmarkSelectionSort-8               1            8270130401 ns/op
-BenchmarkInsertionSort-8               1            6083655932 ns/op
-BenchmarkShellSort-8            1000000000          0.00960 ns/op
-BenchmarkMergeSort-8            1000000000          0.0172 ns/op
-BenchmarkMergeSortBU-8          1000000000          0.0171 ns/op
+BenchmarkGoSort
+BenchmarkGoSort-8          	1000000000	         0.0177 ns/op
+BenchmarkSelectionSort
+BenchmarkSelectionSort-8   	       1	         9551462977 ns/op
+BenchmarkInsertionSort
+BenchmarkInsertionSort-8   	       1	         6700196672 ns/op
+BenchmarkShellSort
+BenchmarkShellSort-8       	1000000000	         0.0100 ns/op
+BenchmarkMergeSort
+BenchmarkMergeSort-8       	1000000000	         0.0176 ns/op
+BenchmarkMergeSortBU
+BenchmarkMergeSortBU-8     	1000000000	         0.0175 ns/op
+BenchmarkQuickSort
+BenchmarkQuickSort-8       	1000000000	         0.0571 ns/op
+PASS
 ```

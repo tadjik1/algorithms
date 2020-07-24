@@ -1,4 +1,4 @@
-package shell
+package quicksort
 
 import (
 	. "algorithms/02_sorting/utils"
@@ -7,7 +7,7 @@ import (
 )
 
 func TestSort(t *testing.T) {
-	users := GenerateUsers(1000)
+	users := GenerateUsers(100)
 	assert.False(t, IsSorted(users))
 	Sort(users)
 	assert.True(t, IsSorted(users))
