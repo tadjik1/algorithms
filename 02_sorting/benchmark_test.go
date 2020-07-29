@@ -4,6 +4,7 @@ import (
 	"algorithms/02_sorting/insertion"
 	"algorithms/02_sorting/mergesort"
 	"algorithms/02_sorting/quicksort"
+	"algorithms/02_sorting/quicksort3way"
 	"algorithms/02_sorting/selection"
 	"algorithms/02_sorting/shell"
 	. "algorithms/02_sorting/utils"
@@ -55,4 +56,10 @@ func BenchmarkQuickSort(b *testing.B) {
 	users := GenerateUsers(NumberOfUsers)
 	b.ResetTimer()
 	quicksort.Sort(users)
+}
+
+func BenchmarkQuickSort3Way(b *testing.B) {
+	users := GenerateUsers(NumberOfUsers)
+	b.ResetTimer()
+	quicksort3way.Sort(users)
 }

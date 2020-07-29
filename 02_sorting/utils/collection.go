@@ -5,8 +5,18 @@ type User struct {
 	Age  int
 }
 
+func (user User) CompareTo(other User) int {
+	if user.Age > other.Age {
+		return 1
+	} else if user.Age < other.Age {
+		return -1
+	} else {
+		return 0
+	}
+}
+
 func (user User) Less(other User) bool {
-	return user.Age < other.Age
+	return user.CompareTo(other) < 0
 }
 
 type Users []User
